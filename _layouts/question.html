@@ -2,6 +2,7 @@
 layout: default
 ---
 
+
 <div class="question-page">
   <div class="navigation-header">
     <button onclick="history.back()" class="back-button">← Back</button>
@@ -10,7 +11,10 @@ layout: default
 
   <div class="question-content">
     {% if page.sub-title %}
-    <p class="question-subtitle">{{ page.sub-title }}</p>
+    <p class="question-subtitle">
+      <i data-lucide="git-branch" style="width: 16px; height: 16px;"></i>
+      {{ page.sub-title }}
+    </p>
     {% endif %}
     
     <h1>{{ page.title }}</h1>
@@ -29,13 +33,20 @@ layout: default
       {% for step in page.next-steps %}
         {% if step.type == 'question' %}
           {% assign target = site.questions | where: "slug", step.ref | first %}
+          {% assign card_class = "card-question" %}
+          {% assign icon_name = "git-branch" %}
         {% elsif step.type == 'resource' %}
           {% assign target = site.resources | where: "slug", step.ref | first %}
+          {% assign card_class = "card-resource" %}
+          {% assign icon_name = "book-open" %}
         {% endif %}
         
-        <div class="card">
+        <div class="card {{ card_class }}">
           {% if target %}
             <a href="{{ target.url | relative_url }}" class="card-link">
+              <div class="card-icon">
+                <i data-lucide="{{ icon_name }}"></i>
+              </div>
               <div class="card-content">
                 <h3>{{ step.label }}</h3>
                 {% if target.sub-title %}
@@ -46,6 +57,9 @@ layout: default
             </a>
           {% else %}
             <div class="card-link card-disabled">
+              <div class="card-icon">
+                <i data-lucide="{{ icon_name }}"></i>
+              </div>
               <div class="card-content">
                 <h3>{{ step.label }}</h3>
                 <p class="card-subtitle coming-soon">Coming soon!</p>

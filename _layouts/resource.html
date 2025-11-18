@@ -9,7 +9,10 @@ layout: default
   </div>
 
   <div class="resource-banner">
-    <span class="resource-badge">How-To Guide</span>
+    <span class="resource-badge">
+      <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
+      How-To Guide
+    </span>
   </div>
 
   <div class="resource-content">
@@ -21,7 +24,10 @@ layout: default
     
     {% if page.jobs_to_be_done %}
     <div class="jobs-to-be-done">
-      <h3>This guide helps you:</h3>
+      <h3>
+        <i data-lucide="target" style="width: 18px; height: 18px;"></i>
+        This guide helps you:
+      </h3>
       <ul>
         {% for job in page.jobs_to_be_done %}
         <li>{{ job }}</li>
@@ -55,13 +61,20 @@ layout: default
       {% for step in page.next-steps %}
         {% if step.type == 'question' %}
           {% assign target = site.questions | where: "slug", step.ref | first %}
+          {% assign card_class = "card-question" %}
+          {% assign icon_name = "git-branch" %}
         {% elsif step.type == 'resource' %}
           {% assign target = site.resources | where: "slug", step.ref | first %}
+          {% assign card_class = "card-resource" %}
+          {% assign icon_name = "book-open" %}
         {% endif %}
         
-        <div class="card">
+        <div class="card {{ card_class }}">
           {% if target %}
             <a href="{{ target.url | relative_url }}" class="card-link">
+              <div class="card-icon">
+                <i data-lucide="{{ icon_name }}"></i>
+              </div>
               <div class="card-content">
                 <h3>{{ step.label }}</h3>
                 {% if target.sub-title %}
@@ -72,6 +85,9 @@ layout: default
             </a>
           {% else %}
             <div class="card-link card-disabled">
+              <div class="card-icon">
+                <i data-lucide="{{ icon_name }}"></i>
+              </div>
               <div class="card-content">
                 <h3>{{ step.label }}</h3>
                 <p class="card-subtitle coming-soon">Coming soon!</p>

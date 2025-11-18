@@ -18,8 +18,11 @@ title: UC GIS Consultation Tool
     <div class="cards-grid">
       {% assign start_question = site.questions | where: "slug", "do-you-have-gis-data" | first %}
       {% if start_question %}
-      <div class="card card-featured">
+      <div class="card card-featured card-question">
         <a href="{{ start_question.url | relative_url }}" class="card-link">
+          <div class="card-icon">
+            <i data-lucide="git-branch"></i>
+          </div>
           <div class="card-content">
             <h3>{{ start_question.title }}</h3>
             {% if start_question.sub-title %}
@@ -32,8 +35,11 @@ title: UC GIS Consultation Tool
       {% endif %}
 
       <!-- Placeholder cards for future starting points -->
-      <div class="card">
+      <div class="card card-question">
         <div class="card-link card-disabled">
+          <div class="card-icon">
+            <i data-lucide="map"></i>
+          </div>
           <div class="card-content">
             <h3>I need to visualize my data</h3>
             <p class="card-subtitle coming-soon">Coming soon!</p>
@@ -41,8 +47,11 @@ title: UC GIS Consultation Tool
         </div>
       </div>
 
-      <div class="card">
+      <div class="card card-question">
         <div class="card-link card-disabled">
+          <div class="card-icon">
+            <i data-lucide="sparkles"></i>
+          </div>
           <div class="card-content">
             <h3>I need to analyze spatial patterns</h3>
             <p class="card-subtitle coming-soon">Coming soon!</p>
@@ -50,8 +59,11 @@ title: UC GIS Consultation Tool
         </div>
       </div>
 
-      <div class="card">
+      <div class="card card-resource">
         <div class="card-link card-disabled">
+          <div class="card-icon">
+            <i data-lucide="globe"></i>
+          </div>
           <div class="card-content">
             <h3>I need to create a web map</h3>
             <p class="card-subtitle coming-soon">Coming soon!</p>
